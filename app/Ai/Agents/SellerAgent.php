@@ -17,7 +17,7 @@ use Laravel\Ai\Promptable;
  * Conversation context is fed from the local `messages` table so the agent can
  * answer with awareness of what was said before in this client+company chat.
  */
-#[Provider(Lab::OpenAI)]
+#[Provider(Lab::OpenAICompatible)]
 class SellerAgent implements Agent, Conversational
 {
     use Promptable;

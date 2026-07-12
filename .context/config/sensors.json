@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "source": "manual",
+  "stack": {
+    "language": "php",
+    "framework": "laravel",
+    "testing": "pest",
+    "database": "postgresql"
+  },
+  "sensors": [
+    {
+      "id": "pint-lint",
+      "name": "Laravel Pint Formatting",
+      "type": "command",
+      "command": "vendor/bin/sail bin pint --test --format agent",
+      "severity": "warning",
+      "description": "Check PHP formatting with Laravel Pint"
+    },
+    {
+      "id": "phpstan-types",
+      "name": "PHPStan Static Analysis",
+      "type": "command",
+      "command": "vendor/bin/sail composer types:check",
+      "severity": "critical",
+      "description": "Run PHPStan level 7 static analysis"
+    },
+    {
+      "id": "pest-tests",
+      "name": "Pest Test Suite",
+      "type": "command",
+      "command": "vendor/bin/sail php artisan test --compact",
+      "severity": "critical",
+      "description": "Run full Pest test suite"
+    },
+    {
+      "id": "full-gate",
+      "name": "Full Quality Gate",
+      "type": "command",
+      "command": "vendor/bin/sail composer test",
+      "severity": "critical",
+      "description": "Run config:clear + lint:check + types:check + tests"
+    },
+    {
+      "id": "migrate-fresh",
+      "name": "Fresh Migration",
+      "type": "command",
+      "command": "vendor/bin/sail artisan migrate:fresh --seed --force",
+      "severity": "warning",
+      "description": "Reset database with fresh migrations and seeders"
+    }
+  ]
+}
